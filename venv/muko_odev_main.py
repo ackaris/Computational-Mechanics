@@ -11,31 +11,29 @@ from deflection import deflection
 isim=input("File Name: ")
 l1=int(input("l1: "))
 l2=int(input("l2: "))
-body=body(1,l1,l2)#body(thickness,l1,l2)
-force=force(-10000,body)#force(magnitude,starts,ends)
-rf=reactforce(force)#reactforcce(force)
+T=int(input("T: "))
+f=int(input("F: "))
+body=body(T,l1,l2) #body(thickness,l1,l2)
+force=force(f,body) #force(magnitude,body)
+rf=reactforce(force) #reactforcce(force)
 print("magnitude of force:   "+str(force.magnitude))
 print("magnitude of reaction force:   "+str(rf.magnitude))
 print("Magnitude of moment raction:  "+str(rf.moment))
-shear_stress=shear_stress(body,rf,force)#calculate shear stress
+shear_stress=shear_stress(body,rf,force) #calculate shear stress
 print("shear force:   "+str(shear_stress.magnitude))
-moment = moment(body,rf,force)#calculate normal bending stress
+moment = moment(body,rf,force) #calculate normal bending stress
 print("bending moment: "+str(moment.magnitude))
-print(body.y)
 print("shear stress: "+str(shear_stress.avgstress))
 print("def stress: " + str(moment.defstress))
 deflection=deflection(rf,body,moment)
 print("deflection :  "+str(deflection.magnitude))
-vonmiises=vonmiises(body,moment,shear_stress)
-print(body.y)
-print(body.yy)
-print(len(vonmiises.stress))
+vonmiises = vonmiises(body,moment,shear_stress)
 print("vonmises: "+str(vonmiises.stress))
 print("slope: "+str(deflection.slope))
 def write_file(b):
     if b==1:
         file=open(isim+".txt","a")
-        file.write("Kahrolası X ekseni : \n\n"+str(body.y)+"\n\n\n"+"shear force:\n   "+str(shear_stress.magnitude)+"\n\n\n"+"bending moment:\n "+str(moment.magnitude)+"\n\n\n\n"+"shear stress:\n "+str(shear_stress.stress)+"\n\n\n\n"+"bending stress:\n " + str(moment.stress)+"\n\n\n\n"+"deflection :\n  "+str(deflection.magnitude)+"\n\n\n\n"+"vonmises:\n "+str(vonmiises.stress)+"\n\n\n\n"+"slope:\n\n "+str(deflection.slope))
+        file.write("Kahrolası X ekseni : \n\n"+str(body.y)+"\n\n\n"+"shear force:\n   "+str(shear_stress.magnitude)+"\n\n\n"+"bending moment:\n "+str(moment.magnitude)+"\n\n\n\n"+"shear stress:\n "+str(shear_stress.avgstress)+"\n\n\n\n"+"bending stress:\n " + str(moment.defstress)+"\n\n\n\n"+"deflection :\n  "+str(deflection.magnitude)+"\n\n\n\n"+"vonmises:\n "+str(vonmiises.stress)+"\n\n\n\n"+"slope:\n\n "+str(deflection.slope))
         file.close()
 write_file(0)
 #------------draw the plot-------------------

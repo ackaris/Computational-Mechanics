@@ -8,7 +8,7 @@ class vonmiises:
         self.stress = []
         self.x=[]
         self.y=[]
-        for x in body.y:
+        for x in body.y: #CALCULATION OF THE VON MISES STRESSES
             i = 0
             temp=[]
             pyarray=body.pyarray(x)
@@ -24,7 +24,7 @@ class vonmiises:
                     else:
                         temp.append(0)
             self.stress.append(temp)
-    def principal1(moment,shear):
+    def principal1(moment,shear): #CALCULATIN OF THE PRINCIPAL STRESSES
         return (moment/2)+math.sqrt(((moment/2)*(moment/2))+(shear*shear))
     def principal2 (moment,shear):
         return (moment/ 2) - math.sqrt(((moment/ 2) * (moment/ 2)) + (shear * shear))

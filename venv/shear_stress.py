@@ -7,7 +7,7 @@ class shear_stress:
     def __init__(self,body,reactforce,force):
         self.magnitude=[]
         self.avgstress=[]
-        for x in body.y:
+        for x in body.y: #CALCULATION OF THE AVERAGE SHEAR FORCE AND AVERAGE SHEAR STRESS
             cs=body.pcrossection(x)
             if x<body.l1:
                 self.magnitude.append(reactforce.magnitude)
@@ -15,7 +15,7 @@ class shear_stress:
             else:
                 self.magnitude.append(reactforce.magnitude+force.magcalc(body,x))
                 self.avgstress.append((reactforce.magnitude+force.magcalc(body,x))/cs)
-    def stressarray(self,body,x):
+    def stressarray(self,body,x): #CALCULATION OF THE SHEAR STRESS IN ALL CROSSECTON POINT BY POINT
         pyarray = body.pyarray(x)
         i = body.y.index(x)
         stressarray = []

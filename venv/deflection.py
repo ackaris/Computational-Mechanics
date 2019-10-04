@@ -6,7 +6,7 @@ from reactforce import reactforce
 from moment import moment
 import numpy as np
 
-class deflection:
+class deflection: #CALCULATION OF THE DEFLECTION
     def __init__(self,rf,body,moment):
         self.magnitude=[]
         self.slope=[]
